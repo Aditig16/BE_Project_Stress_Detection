@@ -1,0 +1,200 @@
+<!Doctype html>
+    <head>
+		<title>LOGIN</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	</head>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+          $('.tab a').on('click', function (e) {
+          e.preventDefault();
+           
+          $(this).parent().addClass('active');
+          $(this).parent().siblings().removeClass('active');
+           
+          var href = $(this).attr('href');
+          $('.forms > form').hide();
+          $(href).fadeIn(500);
+        });
+    });
+    </script>
+    <style>
+        * {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body {
+	background-image: url("{{ url_for('static', filename='myimage.jpg') }}");
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	content: "";
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	display: block;
+	font-family: 'open sans', sans-serif;
+}
+.forms {
+	background: #000;border-radius: 25px;
+	box-shadow: 0 0 3px #000;
+	margin: 200px auto;
+	margin-left: 180px;
+	max-width: 500px;
+	overflow: hidden;
+	position: relative;
+	padding: 0;
+}
+.forms h1 {
+	padding: 0 0 20px 0;
+	font-size: 26px;
+	color:#fff;
+	font-weight: lighter;
+	text-align: center;
+}
+.forms form { padding: 30px;}
+#admin { display: none; }
+.forms .tab-group {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.forms .tab-group:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.forms .tab-group li a {
+	display: block;
+	text-decoration: none;
+	padding: 15px;
+	background: #000;
+	color: #888;
+	font-size: 20px;
+	float: left;
+	width: 50%;
+	text-align: center;
+	border-top: 3px solid transparent;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+.forms .tab-group li a:hover {
+	background: #73cf41;
+	color: #fff;
+}
+.forms .tab-group .active a {
+	background: #000;
+	color: #fff;
+	border-top: 6px solid #73cf41;
+}
+.forms input {
+	font-size: 16px;
+	display: block;
+	width: 100%;
+	padding: 10px 20px;
+	border: 1px solid #ddd;
+	color: #666;
+	border-radius: 0;
+	margin-bottom: 10px;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+.forms input:focus {
+	outline: 0;
+	border-color: #fff;
+	color:#000;
+}
+.forms label {
+	font-size: 16px;
+	font-weight: normal;
+	color: #fff;
+	margin-bottom: 5px;
+	display: block;
+}
+.forms .button {
+	border: 0;
+	outline: none;
+	border-radius: 0;
+	padding: 10px 0;
+	font-size: 18px;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	background: #73cf41;
+	color: #ffffff;
+	cursor: pointer;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+.forms .button:hover, .button:focus { background: #3ba800; }
+.text-p { text-align: right; }
+.text-p a { color: #1383ea; }
+.container {
+width: 100%;
+height: 100%;
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
+}
+
+        </style>
+    <body>
+
+<div class="container">
+	<div class="forms">
+    <ul class="tab-group">
+        <li class="tab active"><a href="#employee">Employee</a></li>
+        <li class="tab"><a href="#admin">Admin</a></li>
+    </ul>
+    <form action="/form_login" id="employee" method="post">
+          <h1>Stress Detection System</h1>
+          <div class="input-field">
+            <label for="usernameemp">Username</label>
+            <input id="uname" type="text" name="username" />
+            <label for="password">Password</label> 
+            <input type="password" name="password" required/>
+            <input type="submit" value="Login" class="button"/>
+          </div>
+      </form>
+      <form action="/form_login" id="admin" method="post">
+          <h1>Stress Detection System</h1>
+          <div class="input-field">
+            <label for="username">Username</label> 
+            <input type="text" name="username" />
+            <label for="password">Password</label> 
+            <input type="password" name="password" required/>
+            <input type="submit" value="Login" class="button" />
+          </div>
+      </form>
+</div></div>
+<script>
+/*	if(document.getElementById("uname").value!=""){
+	var username=document.getElementById("uname");
+	localStorage.setItem("username",username.value.toString());
+		alert(username.value);
+	}
+*/
+</script>
+</body>
+</html>

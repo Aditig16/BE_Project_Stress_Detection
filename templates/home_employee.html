@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Employee_HOME</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+
+        }
+        .header{
+            display: block;
+            background: black;
+            height: 80px;
+            width: 100%;
+        }   
+        .inner-header{
+            height: 100%;
+            width: 100%;
+            display: block;
+            background-color: black;
+            margin: 0 auto;
+        }
+       .title{
+        height: 100%;
+        display: table;
+        float: left;
+       } 
+       .title span{
+        color:whitesmoke;
+        height:100%;
+         display: table-cell;
+         vertical-align: middle;
+         font-family: Arial, Helvetica, sans-serif;
+       }
+       .navigation{
+           float: right;
+           height: 100%;
+       }
+       .navigation a{
+           height: 100%;
+           display: table;
+           float: left;
+           padding: 0px 20px;
+       }
+       .navigation a li{
+        color:whitesmoke;
+        height: 100%;
+        display: table-cell;
+       vertical-align:middle;
+       font-family: Arial, Helvetica, sans-serif;
+       
+       }
+       .navigation a:hover {
+                background-color: #73cf41;
+                color:black;
+            }
+
+       body {
+	background-image: url("{{ url_for('static', filename='myimage.jpg') }}");
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	content: "";
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	display: block;
+	font-family: 'open sans', sans-serif;
+}
+    </style>
+	</head>
+    <body>
+        <div class = "container">
+<!--p>This page is for employees to see!!</p-->
+<div class="header">
+<div class="inner-header">
+ <div class="title">
+<span id="user_name">&nbsp;&nbsp;&nbsp;&nbsp;Welcome</span>
+</div>
+<ul class="navigation">
+    <a href="{{ url_for('question')}}"><li>Questionnaire</li></a>
+    <a href="{{ url_for('stress')}}"><li>Stress Analysis</li></a>
+    <a href="{{ url_for('factor')}}"><li>Factor Analysis</li></a>
+
+    <a href="{{ url_for('out')}}"><li>Logout </li></a>
+</ul>
+</div>
+</div>
+{% block content %}{% endblock %}
+<script>
+    document.getElementById("user_name").innerHTML+=" Rasika";
+</script>
+</div>
+</body>
+</html>

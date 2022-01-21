@@ -1,0 +1,854 @@
+<include file="include_home_employee.html"></include>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    .quest_box{
+        display:block;
+        position: absolute;
+        left: 250px;
+        padding: 50px;
+        top: 150px;
+        border: 2px solid;
+        height: 200px;
+        width: 1000px;
+        border-color: black;
+        color:#fff;
+        background-color: black;
+    }
+    .button {
+  background-color: #73cf41;
+  color: #000;
+  border-radius: 8px;
+  padding: 10px 25px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid #000;
+}
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+</style>
+</head>
+<body>
+    {% extends "home_employee.html" %}
+    {% block content %}
+    <br>
+    <button class="button" id="start" style="position:absolute; left: 650px; top:300px;" onclick="start();">START QUESTIONNAIRE</button>
+    <div class="quest_box" id = "quest_box" style="visibility: hidden;">
+
+    <p id="ques" style="display: none; text-align: justify;"></p>
+    <p id="ques_but" style= "display: none;position: absolute;left: 50px;top: 70px;" >
+    <br>
+    <input type="radio" id="b1" name="ques_list" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l1" for="Never"style= "display: none;position: relative;left: 10px;top: 10px;">Never</label>
+   
+    <input type="radio" id="b2" name="ques_list" value="Almost Never" style= "display: none;position: relative;left:-54px;top: 40px;">
+    <label id ="l2" for="Almost Never"style= "display: none;position: relative;left: -54px;top: 40px;">Almost Never</label>
+   
+    <input type="radio" id="b3" name="ques_list" value="Sometimes"  style= "display: none;position: relative;left: -171px;top: 70px;">
+    <label id ="l3" for="Sometimes" style= "display: none;position: relative;left: -171px;top: 70px;">Sometimes</label>
+   
+    <input type="radio" id="b4" name="ques_list" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l4" for="Fairly Often"style= "display: none;position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b5" name="ques_list" value="Very Often"style= "display: none;position: relative;left: -377px;top: 130px;" >
+    <label id ="l5" for="Very Often"style= "display: none;position: relative;left: -377px;top: 130px;" >Very Often</label>
+    
+
+    <input type="radio" id="b21" name="ques_list2" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l21" for="Never"style= "display: none; position: relative;left: 10px;top: 10px;">Never</label>
+    <input type="radio" id="b22" name="ques_list2" value="Almost Never" style= "display: none; position: relative;left:-54px;top: 40px;">
+    <label id ="l22" for="Almost Never"style= "display: none; position: relative;left: -54px;top: 40px;">Almost Never</label>
+
+    <input type="radio" id="b23" name="ques_list2" value="Sometimes"  style= "display: none; position: relative;left: -171px;top: 70px;">
+    <label id ="l23" for="Sometimes" style= "display: none; ;position: relative;left: -171px;top: 70px;">Sometimes</label>
+
+    <input type="radio" id="b24" name="ques_list2" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l24" for="Fairly Often"style= "display: none; position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b25" name="ques_list2" value="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >
+    <label id ="l25" for="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >Very Often</label>
+
+    <input type="radio" id="b31" name="ques_list3" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l31" for="Never"style= "display: none; position: relative;left: 10px;top: 10px;">Never</label>
+    <input type="radio" id="b32" name="ques_list3" value="Almost Never" style= "display: none; position: relative;left:-54px;top: 40px;">
+    <label id ="l32" for="Almost Never"style= "display: none; position: relative;left: -54px;top: 40px;">Almost Never</label>
+
+    <input type="radio" id="b33" name="ques_list3" value="Sometimes"  style= "display: none; position: relative;left: -171px;top: 70px;">
+    <label id ="l33" for="Sometimes" style= "display: none; ;position: relative;left: -171px;top: 70px;">Sometimes</label>
+
+    <input type="radio" id="b34" name="ques_list3" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l34" for="Fairly Often"style= "display: none; position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b35" name="ques_list3" value="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >
+    <label id ="l35" for="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >Very Often</label>
+
+
+
+    <input type="radio" id="b41" name="ques_list4" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l41" for="Never"style= "display: none; position: relative;left: 10px;top: 10px;">Never</label>
+    <input type="radio" id="b42" name="ques_list4" value="Almost Never" style= "display: none; position: relative;left:-54px;top: 40px;">
+    <label id ="l42" for="Almost Never"style= "display: none; position: relative;left: -54px;top: 40px;">Almost Never</label>
+
+    <input type="radio" id="b43" name="ques_list4" value="Sometimes"  style= "display: none; position: relative;left: -171px;top: 70px;">
+    <label id ="l43" for="Sometimes" style= "display: none; ;position: relative;left: -171px;top: 70px;">Sometimes</label>
+
+    <input type="radio" id="b44" name="ques_list4" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l44" for="Fairly Often"style= "display: none; position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b45" name="ques_list4" value="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >
+    <label id ="l45" for="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >Very Often</label>
+
+    <input type="radio" id="b51" name="ques_list5" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l51" for="Never"style= "display: none; position: relative;left: 10px;top: 10px;">Never</label>
+    <input type="radio" id="b52" name="ques_list5" value="Almost Never" style= "display: none; position: relative;left:-54px;top: 40px;">
+    <label id ="l52" for="Almost Never"style= "display: none; position: relative;left: -54px;top: 40px;">Almost Never</label>
+
+    <input type="radio" id="b53" name="ques_list5" value="Sometimes"  style= "display: none; position: relative;left: -171px;top: 70px;">
+    <label id ="l53" for="Sometimes" style= "display: none; ;position: relative;left: -171px;top: 70px;">Sometimes</label>
+
+    <input type="radio" id="b54" name="ques_list5" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l54" for="Fairly Often"style= "display: none; position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b55" name="ques_list5" value="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >
+    <label id ="l55" for="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >Very Often</label>
+
+    <input type="radio" id="b61" name="ques_list6" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l61" for="Never"style= "display: none; position: relative;left: 10px;top: 10px;">Never</label>
+    <input type="radio" id="b62" name="ques_list6" value="Almost Never" style= "display: none; position: relative;left:-54px;top: 40px;">
+    <label id ="l62" for="Almost Never"style= "display: none; position: relative;left: -54px;top: 40px;">Almost Never</label>
+
+    <input type="radio" id="b63" name="ques_list6" value="Sometimes"  style= "display: none; position: relative;left: -171px;top: 70px;">
+    <label id ="l63" for="Sometimes" style= "display: none; ;position: relative;left: -171px;top: 70px;">Sometimes</label>
+
+    <input type="radio" id="b64" name="ques_list6" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l64" for="Fairly Often"style= "display: none; position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b65" name="ques_list6" value="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >
+    <label id ="l65" for="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >Very Often</label>
+    
+    <input type="radio" id="b71" name="ques_list7" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l71" for="Never"style= "display: none; position: relative;left: 10px;top: 10px;">Never</label>
+    <input type="radio" id="b72" name="ques_list7" value="Almost Never" style= "display: none; position: relative;left:-54px;top: 40px;">
+    <label id ="l72" for="Almost Never"style= "display: none; position: relative;left: -54px;top: 40px;">Almost Never</label>
+
+    <input type="radio" id="b73" name="ques_list7" value="Sometimes"  style= "display: none; position: relative;left: -171px;top: 70px;">
+    <label id ="l73" for="Sometimes" style= "display: none; ;position: relative;left: -171px;top: 70px;">Sometimes</label>
+
+    <input type="radio" id="b74" name="ques_list7" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l74" for="Fairly Often"style= "display: none; position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b75" name="ques_list7" value="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >
+    <label id ="l75" for="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >Very Often</label>
+    
+    <input type="radio" id="b81" name="ques_list8" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l81" for="Never"style= "display: none; position: relative;left: 10px;top: 10px;">Never</label>
+    <input type="radio" id="b82" name="ques_list8" value="Almost Never" style= "display: none; position: relative;left:-54px;top: 40px;">
+    <label id ="l82" for="Almost Never"style= "display: none; position: relative;left: -54px;top: 40px;">Almost Never</label>
+
+    <input type="radio" id="b83" name="ques_list8" value="Sometimes"  style= "display: none; position: relative;left: -171px;top: 70px;">
+    <label id ="l83" for="Sometimes" style= "display: none; ;position: relative;left: -171px;top: 70px;">Sometimes</label>
+
+    <input type="radio" id="b84" name="ques_list8" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l84" for="Fairly Often"style= "display: none; position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b85" name="ques_list8" value="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >
+    <label id ="l85" for="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >Very Often</label>
+    
+    <input type="radio" id="b91" name="ques_list9" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l91" for="Never"style= "display: none; position: relative;left: 10px;top: 10px;">Never</label>
+    <input type="radio" id="b92" name="ques_list9" value="Almost Never" style= "display: none; position: relative;left:-54px;top: 40px;">
+    <label id ="l92" for="Almost Never"style= "display: none; position: relative;left: -54px;top: 40px;">Almost Never</label>
+
+    <input type="radio" id="b93" name="ques_list9" value="Sometimes"  style= "display: none; position: relative;left: -171px;top: 70px;">
+    <label id ="l93" for="Sometimes" style= "display: none; ;position: relative;left: -171px;top: 70px;">Sometimes</label>
+
+    <input type="radio" id="b94" name="ques_list9" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l94" for="Fairly Often"style= "display: none; position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b95" name="ques_list9" value="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >
+    <label id ="l95" for="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >Very Often</label>
+    
+    <input type="radio" id="b101" name="ques_list10" value="Never" style= "display: none; position: relative;left: 10px;top: 10px;" >
+    <label id ="l101" for="Never"style= "display: none; position: relative;left: 10px;top: 10px;">Never</label>
+    <input type="radio" id="b102" name="ques_list10" value="Almost Never" style= "display: none; position: relative;left:-54px;top: 40px;">
+    <label id ="l102" for="Almost Never"style= "display: none; position: relative;left: -54px;top: 40px;">Almost Never</label>
+
+    <input type="radio" id="b103" name="ques_list10" value="Sometimes"  style= "display: none; position: relative;left: -171px;top: 70px;">
+    <label id ="l103" for="Sometimes" style= "display: none; ;position: relative;left: -171px;top: 70px;">Sometimes</label>
+
+    <input type="radio" id="b104" name="ques_list10" value="Fairly Often"  style= "display: none;position: relative;left: -273px;top: 100px;">
+    <label id ="l104" for="Fairly Often"style= "display: none; position: relative;left: -273px;top: 100px;" >Fairly Often</label>
+
+    <input type="radio" id="b105" name="ques_list10" value="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >
+    <label id ="l105" for="Very Often"style= "display: none; position: relative;left: -377px;top: 130px;" >Very Often</label>
+
+    
+    <button class="button" id="next1" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next1();">NEXT</button>
+    <button class="button" id="next2" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next2();">NEXT</button>
+    <button class="button" id="next3" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next3();">NEXT</button>
+    <button class="button" id="next4" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next4();">NEXT</button>
+    <button class="button" id="next5" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next5();">NEXT</button>
+    <button class="button" id="next6" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next6();">NEXT</button>
+    <button class="button" id="next7" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next7();">NEXT</button>
+    <button class="button" id="next8" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next8();">NEXT</button>
+    <button class="button" id="next9" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next9();">NEXT</button>
+    <button class="button" id="next10" value="NEXT" style="display: none;position: absolute;left: 800; top: 150px; " onclick="next10();">NEXT</button>
+</p>
+    
+</div>
+    <script>
+        var score=0;
+        var ques=false;
+        var arr=["0","0","0","0","0","0","0","0","0","0"];
+        function start(){
+            var check;
+            document.getElementById("start").style.display="none";
+            document.getElementById("quest_box").style.visibility="visible";
+            document.getElementById("ques").style.display="";
+            document.getElementById("ques").innerHTML="Question 1."+"In the last month, how often have you been upset because of something that happened unexpectedly?";
+            document.getElementById("ques_but").style.display="";
+            document.getElementById("b1").style.display="";
+            document.getElementById("b2").style.display="";
+            document.getElementById("b3").style.display="";
+            document.getElementById("b4").style.display="";
+            document.getElementById("b5").style.display="";
+            document.getElementById("l1").style.display="";
+            document.getElementById("l2").style.display="";
+            document.getElementById("l3").style.display="";
+            document.getElementById("l4").style.display="";
+            document.getElementById("l5").style.display="";
+            document.getElementById("next1").style.display="";
+
+         //   next1();
+        }
+        function next1(){
+            var rad_val=document.getElementsByName("ques_list");
+            //alert("esf");
+
+            for(i=0;i<rad_val.length;i++){
+                //alert("esff");
+
+                if(rad_val[i].checked){
+                  //  alert("esfff");   
+                  check=rad_val[i].value;             
+                }
+            }
+            arr[0]=check;
+          //  alert(arr[0]);
+            if(check=="Never"){
+                score=score+0;
+            }
+            if(check=="Almost Never"){
+                score=score+1;
+            }
+            
+            if(check=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check=="Fairly Often"){
+                score=score+3;
+            }
+            
+            if(check=="Very Often"){
+                score=score+4;
+            }
+          //  document.getElementById("ques").innerHTML="q2"+score;
+          document.getElementById("ques").innerHTML="Question 2. "+"In the last month, how often have you felt that you were unable to control the important things in your life?";
+          document.getElementById("next1").style.display="none";
+            document.getElementById("b1").style.display="none";
+            document.getElementById("b2").style.display="none";
+            document.getElementById("b3").style.display="none";
+            document.getElementById("b4").style.display="none";
+            document.getElementById("b5").style.display="none";
+            document.getElementById("l1").style.display="none";
+            document.getElementById("l2").style.display="none";
+            document.getElementById("l3").style.display="none";
+            document.getElementById("l4").style.display="none";
+            document.getElementById("l5").style.display="none";
+            document.getElementById("b21").style.display="";
+            document.getElementById("b22").style.display="";
+            document.getElementById("b23").style.display="";
+            document.getElementById("b24").style.display="";
+            document.getElementById("b25").style.display="";
+            document.getElementById("l21").style.display="";
+            document.getElementById("l22").style.display="";
+            document.getElementById("l23").style.display="";
+            document.getElementById("l24").style.display="";
+            document.getElementById("l25").style.display="";
+
+          //  alert("ds");
+           // document.getElementById("ques_but1").style.display="";
+            //alert("dss");
+            document.getElementById("next2").style.display="";
+        }
+function next2(){
+    var rad_val1=document.getElementsByName("ques_list2");
+            //alert("esf");
+            var check1;
+            for(i=0;i<rad_val1.length;i++){
+                //alert("esff");
+                if(rad_val1[i].checked){
+                  //  alert("esfff");   
+                  check1=rad_val1[i].value;             
+                }
+            }
+            arr[1]=check1;
+            //alert(arr[0]);
+            if(check1=="Never"){
+                score=score+0;
+            }
+            if(check1=="Almost Never"){
+                score=score+1;
+            }
+            
+            if(check1=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check1=="Fairly Often"){
+                score=score+3;
+            }
+            
+            if(check1=="Very Often"){
+                score=score+4;
+            }
+           // document.getElementById("ques").innerHTML="q3"+score;
+           document.getElementById("ques").innerHTML="Question 3. "+"In the last month, how often have you felt nervous and stressed?"; 
+           document.getElementById("next2").style.display="none";
+            document.getElementById("b21").style.display="none";
+            document.getElementById("b22").style.display="none";
+            document.getElementById("b23").style.display="none";
+            document.getElementById("b24").style.display="none";
+            document.getElementById("b25").style.display="none";
+            document.getElementById("l21").style.display="none";
+            document.getElementById("l22").style.display="none";
+            document.getElementById("l23").style.display="none";
+            document.getElementById("l24").style.display="none";
+            document.getElementById("l25").style.display="none";
+            document.getElementById("b31").style.display="";
+            document.getElementById("b32").style.display="";
+            document.getElementById("b33").style.display="";
+            document.getElementById("b34").style.display="";
+            document.getElementById("b35").style.display="";
+            document.getElementById("l31").style.display="";
+            document.getElementById("l32").style.display="";
+            document.getElementById("l33").style.display="";
+            document.getElementById("l34").style.display="";
+            document.getElementById("l35").style.display="";
+            document.getElementById("next3").style.display="";
+
+
+}
+function next3(){
+    var rad_val2=document.getElementsByName("ques_list3");
+            //alert("esf");
+            var check2;
+            for(i=0;i<rad_val2.length;i++){
+                //alert("esff");
+                if(rad_val2[i].checked){
+                  //  alert("esfff");   
+                  check2=rad_val2[i].value;             
+                }
+            }
+            arr[2]=check2;
+            //alert(arr[0]);
+            if(check2=="Never"){
+                score=score+0;
+            }
+            if(check2=="Almost Never"){
+                score=score+1;
+            }
+            
+            if(check2=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check2=="Fairly Often"){
+                score=score+3;
+            }
+            
+            if(check2=="Very Often"){
+                score=score+4;
+            }
+            document.getElementById("ques").innerHTML="Question 4. "+"In the last month, how often have you felt confident about your ability to handle your personal problems?";
+            //  document.getElementById("ques").innerHTML="q4"+score;
+            document.getElementById("next3").style.display="none";
+            document.getElementById("b31").style.display="none";
+            document.getElementById("b32").style.display="none";
+            document.getElementById("b33").style.display="none";
+            document.getElementById("b34").style.display="none";
+            document.getElementById("b35").style.display="none";
+            document.getElementById("l31").style.display="none";
+            document.getElementById("l32").style.display="none";
+            document.getElementById("l33").style.display="none";
+            document.getElementById("l34").style.display="none";
+            document.getElementById("l35").style.display="none";
+            document.getElementById("b41").style.display="";
+            document.getElementById("b42").style.display="";
+            document.getElementById("b43").style.display="";
+            document.getElementById("b44").style.display="";
+            document.getElementById("b45").style.display="";
+            document.getElementById("l41").style.display="";
+            document.getElementById("l42").style.display="";
+            document.getElementById("l43").style.display="";
+            document.getElementById("l44").style.display="";
+            document.getElementById("l45").style.display="";
+            document.getElementById("next4").style.display="";
+
+}
+function next4(){
+    var rad_val3=document.getElementsByName("ques_list4");
+            //alert("esf");
+            var check3;
+            for(i=0;i<rad_val3.length;i++){
+                //alert("esff");
+                if(rad_val3[i].checked){
+                  //  alert("esfff");   
+                  check3=rad_val3[i].value;             
+                }
+            }
+            arr[3]=check3;
+            //alert(arr[0]);
+            if(check3=="Never"){
+                score=score+4;
+            }
+            if(check3=="Almost Never"){
+                score=score+3;
+            }
+            
+            if(check3=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check3=="Fairly Often"){
+                score=score+1;
+            }
+            
+            if(check3=="Very Often"){
+                score=score+0;
+            }
+//document.getElementById("ques").innerHTML="q4"+score;
+document.getElementById("ques").innerHTML="Question 5. "+"In the last month, how often have you felt that things were going your way?";
+
+            document.getElementById("next4").style.display="none";
+            document.getElementById("b41").style.display="none";
+            document.getElementById("b42").style.display="none";
+            document.getElementById("b43").style.display="none";
+            document.getElementById("b44").style.display="none";
+            document.getElementById("b45").style.display="none";
+            document.getElementById("l41").style.display="none";
+            document.getElementById("l42").style.display="none";
+            document.getElementById("l43").style.display="none";
+            document.getElementById("l44").style.display="none";
+            document.getElementById("l45").style.display="none";
+            document.getElementById("b51").style.display="";
+            document.getElementById("b52").style.display="";
+            document.getElementById("b53").style.display="";
+            document.getElementById("b54").style.display="";
+            document.getElementById("b55").style.display="";
+            document.getElementById("l51").style.display="";
+            document.getElementById("l52").style.display="";
+            document.getElementById("l53").style.display="";
+            document.getElementById("l54").style.display="";
+            document.getElementById("l55").style.display="";
+            document.getElementById("next5").style.display="";
+
+
+}
+function next5(){
+    var rad_val4=document.getElementsByName("ques_list5");
+            //alert("esf");
+            var check4;
+            for(i=0;i<rad_val4.length;i++){
+                //alert("esff");
+                if(rad_val4[i].checked){
+                  //  alert("esfff");   
+                  check4=rad_val4[i].value;             
+                }
+            }
+            arr[4]=check4;
+            //alert(arr[0]);
+            if(check4=="Never"){
+                score=score+4;
+            }
+            if(check4=="Almost Never"){
+                score=score+3;
+            }
+            
+            if(check4=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check4=="Fairly Often"){
+                score=score+1;
+            }
+            
+            if(check4=="Very Often"){
+                score=score+0;
+            }
+            document.getElementById("ques").innerHTML="Question 6. "+"In the last month, how often have you found that you could not cope with all the things that you had to do?";
+
+        //    document.getElementById("ques").innerHTML="q5"+score;
+            document.getElementById("next5").style.display="none";
+            document.getElementById("b51").style.display="none";
+            document.getElementById("b52").style.display="none";
+            document.getElementById("b53").style.display="none";
+            document.getElementById("b54").style.display="none";
+            document.getElementById("b55").style.display="none";
+            document.getElementById("l51").style.display="none";
+            document.getElementById("l52").style.display="none";
+            document.getElementById("l53").style.display="none";
+            document.getElementById("l54").style.display="none";
+            document.getElementById("l55").style.display="none";
+            document.getElementById("b61").style.display="";
+            document.getElementById("b62").style.display="";
+            document.getElementById("b63").style.display="";
+            document.getElementById("b64").style.display="";
+            document.getElementById("b65").style.display="";
+            document.getElementById("l61").style.display="";
+            document.getElementById("l62").style.display="";
+            document.getElementById("l63").style.display="";
+            document.getElementById("l64").style.display="";
+            document.getElementById("l65").style.display="";
+            document.getElementById("next6").style.display="";
+
+
+}
+function next6(){
+    var rad_val5=document.getElementsByName("ques_list6");
+            //alert("esf");
+            var check5;
+            for(i=0;i<rad_val5.length;i++){
+                //alert("esff");
+                if(rad_val5[i].checked){
+                  //  alert("esfff");   
+                  check5=rad_val5[i].value;             
+                }
+            }
+            arr[5]=check5;
+            //alert(arr[0]);
+            if(check5=="Never"){
+                score=score+0;
+            }
+            if(check5=="Almost Never"){
+                score=score+1;
+            }
+            
+            if(check5=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check5=="Fairly Often"){
+                score=score+3;
+            }
+            
+            if(check5=="Very Often"){
+                score=score+4;
+            }
+            document.getElementById("ques").innerHTML="Question 7. "+"In the last month, how often have you been able to control irritations in your life?";
+
+           // document.getElementById("ques").innerHTML="q6"+score;
+            document.getElementById("next6").style.display="none";
+            document.getElementById("b61").style.display="none";
+            document.getElementById("b62").style.display="none";
+            document.getElementById("b63").style.display="none";
+            document.getElementById("b64").style.display="none";
+            document.getElementById("b65").style.display="none";
+            document.getElementById("l61").style.display="none";
+            document.getElementById("l62").style.display="none";
+            document.getElementById("l63").style.display="none";
+            document.getElementById("l64").style.display="none";
+            document.getElementById("l65").style.display="none";
+            document.getElementById("b71").style.display="";
+            document.getElementById("b72").style.display="";
+            document.getElementById("b73").style.display="";
+            document.getElementById("b74").style.display="";
+            document.getElementById("b75").style.display="";
+            document.getElementById("l71").style.display="";
+            document.getElementById("l72").style.display="";
+            document.getElementById("l73").style.display="";
+            document.getElementById("l74").style.display="";
+            document.getElementById("l75").style.display="";
+            document.getElementById("next7").style.display="";
+
+}
+
+function next7(){
+    var rad_val6=document.getElementsByName("ques_list7");
+            //alert("esf");
+            var check6;
+            for(i=0;i<rad_val6.length;i++){
+                //alert("esff");
+                if(rad_val6[i].checked){
+                  //  alert("esfff");   
+                  check6=rad_val6[i].value;             
+                }
+            }
+            arr[6]=check6;
+            //alert(arr[0]);
+            if(check6=="Never"){
+                score=score+4;
+            }
+            if(check6=="Almost Never"){
+                score=score+3;
+            }
+            
+            if(check6=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check6=="Fairly Often"){
+                score=score+1;
+            }
+            
+            if(check6=="Very Often"){
+                score=score+0;
+            }
+            document.getElementById("ques").innerHTML="Question 8. "+"In the last month, how often have you felt that you were on top of things?";
+            //document.getElementById("ques").innerHTML="q7"+score;
+            document.getElementById("next7").style.display="none";
+            document.getElementById("b71").style.display="none";
+            document.getElementById("b72").style.display="none";
+            document.getElementById("b73").style.display="none";
+            document.getElementById("b74").style.display="none";
+            document.getElementById("b75").style.display="none";
+            document.getElementById("l71").style.display="none";
+            document.getElementById("l72").style.display="none";
+            document.getElementById("l73").style.display="none";
+            document.getElementById("l74").style.display="none";
+            document.getElementById("l75").style.display="none";
+            document.getElementById("b81").style.display="";
+            document.getElementById("b82").style.display="";
+            document.getElementById("b83").style.display="";
+            document.getElementById("b84").style.display="";
+            document.getElementById("b85").style.display="";
+            document.getElementById("l81").style.display="";
+            document.getElementById("l82").style.display="";
+            document.getElementById("l83").style.display="";
+            document.getElementById("l84").style.display="";
+            document.getElementById("l85").style.display="";
+            document.getElementById("next8").style.display="";
+
+
+}
+function next8(){
+    var rad_val7=document.getElementsByName("ques_list8");
+            //alert("esf");
+            var check7;
+            for(i=0;i<rad_val7.length;i++){
+                //alert("esff");
+                if(rad_val7[i].checked){
+                  //  alert("esfff");   
+                  check7=rad_val7[i].value;             
+                }
+            }
+            arr[7]=check7;
+            //alert(arr[0]);
+            if(check7=="Never"){
+                score=score+4;
+            }
+            if(check7=="Almost Never"){
+                score=score+3;
+            }
+            
+            if(check7=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check7=="Fairly Often"){
+                score=score+1;
+            }
+            
+            if(check7=="Very Often"){
+                score=score+0;
+            }
+            document.getElementById("ques").innerHTML="Question 9. "+"In the last month, how often have you been angered because of things that happened that were outside of your control?";
+           // document.getElementById("ques").innerHTML="q8"+score;
+            document.getElementById("next8").style.display="none";
+            document.getElementById("b81").style.display="none";
+            document.getElementById("b82").style.display="none";
+            document.getElementById("b83").style.display="none";
+            document.getElementById("b84").style.display="none";
+            document.getElementById("b85").style.display="none";
+            document.getElementById("l81").style.display="none";
+            document.getElementById("l82").style.display="none";
+            document.getElementById("l83").style.display="none";
+            document.getElementById("l84").style.display="none";
+            document.getElementById("l85").style.display="none";
+            document.getElementById("b91").style.display="";
+            document.getElementById("b92").style.display="";
+            document.getElementById("b93").style.display="";
+            document.getElementById("b94").style.display="";
+            document.getElementById("b95").style.display="";
+            document.getElementById("l91").style.display="";
+            document.getElementById("l92").style.display="";
+            document.getElementById("l93").style.display="";
+            document.getElementById("l94").style.display="";
+            document.getElementById("l95").style.display="";
+            document.getElementById("next9").style.display="";
+
+
+}
+function next9(){
+    var rad_val8=document.getElementsByName("ques_list9");
+            //alert("esf");
+            var check8;
+            for(i=0;i<rad_val8.length;i++){
+                //alert("esff");
+                if(rad_val8[i].checked){
+                  //  alert("esfff");   
+                  check8=rad_val8[i].value;             
+                }
+            }
+            arr[8]=check8;
+            //alert(arr[0]);
+            if(check8=="Never"){
+                score=score+0;
+            }
+            if(check8=="Almost Never"){
+                score=score+1;
+            }
+            
+            if(check8=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check8=="Fairly Often"){
+                score=score+3;
+            }
+            
+            if(check8=="Very Often"){
+                score=score+4;
+            }
+            document.getElementById("ques").innerHTML="Question 10. "+"In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?";
+         //   document.getElementById("ques").innerHTML="q9"+score;
+            document.getElementById("next9").style.display="none";
+            document.getElementById("b91").style.display="none";
+            document.getElementById("b92").style.display="none";
+            document.getElementById("b93").style.display="none";
+            document.getElementById("b94").style.display="none";
+            document.getElementById("b95").style.display="none";
+            document.getElementById("l91").style.display="none";
+            document.getElementById("l92").style.display="none";
+            document.getElementById("l93").style.display="none";
+            document.getElementById("l94").style.display="none";
+            document.getElementById("l95").style.display="none";
+            document.getElementById("b101").style.display="";
+            document.getElementById("b102").style.display="";
+            document.getElementById("b103").style.display="";
+            document.getElementById("b104").style.display="";
+            document.getElementById("b105").style.display="";
+            document.getElementById("l101").style.display="";
+            document.getElementById("l102").style.display="";
+            document.getElementById("l103").style.display="";
+            document.getElementById("l104").style.display="";
+            document.getElementById("l105").style.display="";
+            document.getElementById("next10").style.display="";
+
+}
+
+
+function next10(){
+    var rad_val9=document.getElementsByName("ques_list10");
+            //alert("esf");
+            var check9;
+            for(i=0;i<rad_val9.length;i++){
+                //alert("esff");
+                if(rad_val9[i].checked){
+                  //  alert("esfff");   
+                  check9=rad_val9[i].value;             
+                }
+            }
+            arr[9]=check9;
+            //alert(arr[0]);
+            if(check9=="Never"){
+                score=score+0;
+            }
+            if(check9=="Almost Never"){
+                score=score+1;
+            }
+            
+            if(check9=="Sometimes"){
+                score=score+2;
+            }
+            
+            if(check9=="Fairly Often"){
+                score=score+3;
+            }
+            
+            if(check9=="Very Often"){
+                score=score+4;
+            }
+            ques=true;
+            localStorage.setItem("score_array",JSON.stringify(arr));
+            localStorage.setItem("score_val",score);
+            document.getElementById("ques").innerHTML="You can see the result in Factor Analysis section";
+            document.getElementById("b101").style.display="none";
+            document.getElementById("b102").style.display="none";
+            document.getElementById("b103").style.display="none";
+            document.getElementById("b104").style.display="none";
+            document.getElementById("b105").style.display="none";
+            document.getElementById("l101").style.display="none";
+            document.getElementById("l102").style.display="none";
+            document.getElementById("l103").style.display="none";
+            document.getElementById("l104").style.display="none";
+            document.getElementById("l105").style.display="none";
+            document.getElementById("next10").style.display="none";
+
+}
+      //  var score=0;
+    //    var ques_count=0;
+
+
+/*if(ques_count==1){
+    document.getElementById("ques").innerHTML="Question 1."+ques_count+"In the last month, how often have you been upset because of something that happened unexpectedly?";
+}
+   if(ques_count==2){
+    document.getElementById("ques").innerHTML="Question 2. "+ques_count+"csf"+score+"In the last month, how often have you felt that you were unable to control the important things in your life?";
+   }
+   else if(ques_count==3){
+    document.getElementById("ques").innerHTML="Question 3. "+ques_count+"fa"+score+"In the last month, how often have you felt nervous and stressed?";
+    }
+    else if(ques_count==4){
+    document.getElementById("ques").innerHTML="Question 4. "+ques_count+"In the last month, how often have you felt confident about your ability to handle your personal problems?";
+    }
+    else if(ques_count==5){
+    document.getElementById("ques").innerHTML="Question 5. "+ques_count+"In the last month, how often have you felt that things were going your way?";
+    }
+    else if(ques_count==6){
+    document.getElementById("ques").innerHTML="Question 6. "+ques_count+"In the last month, how often have you found that you could not cope with all the things that you had to do?";
+    }
+    else if(ques_count==7){
+    document.getElementById("ques").innerHTML="Question 7. "+ques_count+"In the last month, how often have you been able to control irritations in your life?";
+    }
+    else if(ques_count==8){
+    document.getElementById("ques").innerHTML="Question 8. "+ques_count+"In the last month, how often have you felt that you were on top of things?";
+    }
+    else if(ques_count==9){
+    document.getElementById("ques").innerHTML="Question 9. "+ques_count+"In the last month, how often have you been angered because of things that happened that were outside of your control?";
+    }
+    else if(ques_count==10){
+    document.getElementById("ques").innerHTML="Question 10. "+ques_count+"In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?";
+    }
+        
+    <p id="q1" style="color: black; display: none;">
+        <p id="q2" style="color: black; display: none;">In the last month, how often have you felt that you were unable to control the important things in your life?</p>
+    <p id="q3" style="color: black; display: none;">In the last month, how often have you felt nervous and stressed?</p>
+    <p id="q4" style="color: black; display: none;">In the last month, how often have you felt confident about your ability to handle your personal problems?</p>
+    <p id="q5" style="color: black; display: none;">In the last month, how often have you felt that things were going your way?</p>
+    <p id="q6" style="color: black; display: none;">In the last month, how often have you found that you could not cope with all the things that you had to do?</p>
+    <p id="q7" style="color: black; display: none;">In the last month, how often have you been able to control irritations in your life?</p>
+    <p id="q8" style="color: black; display: none;">In the last month, how often have you felt that you were on top of things?</p>
+    <p id="q9" style="color: black; display: none;">In the last month, how often have you been angered because of things that happened that were outside of your control?</p>
+    <p id="q10" style="color: black; display: none;">In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?</p>
+
+        */
+    </script>
+    {% endblock %}
+</body>
+</html>
