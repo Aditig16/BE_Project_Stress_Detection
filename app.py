@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete
 from sqlalchemy.sql.expression import null
-from flask import Flask,request,render_template
+from flask import Flask,request,render_template,session,redirect,url_for
 
 #-----------------------------------------------------------------------------------------------------------------
 
@@ -42,23 +42,32 @@ def hello_world():
 
 @app.route('/form_login',methods=['POST','GET'])
 def login():
-    duname=request.form['username']
-    dpass=request.form['password']
-    user = User.query.filter_by(username=duname).first()
-    if user:
-        passchk = User.query.filter_by(username=duname , password=dpass).first()
-        if passchk:
-            return render_template('home_employee.html')
-        else:
-            return render_template('login.html')
-    else:
-        if duname=='admin':
-            if dpass=='Mk$as%k12pasO':
-                return render_template('home_admin.html')
+    if request.method == 'POST':
+        duname=request.form['username']
+        dpass=request.form['password']
+        user = User.query.filter_by(username=duname).first()
+        if user:
+            passchk = User.query.filter_by(username=duname , password=dpass).first()
+            if passchk:
+                return redirect(url_for('home_employee', username=duname))
+                #return render_template('home_employee.html')
             else:
                 return render_template('login.html')
         else:
-            return render_template('login.html')
+            if duname=='admin':
+                if dpass=='Mk$as%k12pasO':
+                    return render_template('home_admin.html')
+                else:
+                    return render_template('login.html')
+            else:
+                return render_template('login.html')
+        return render_template('login.html')
+
+@app.route('/home_employee')
+def home_employee():
+    unm = request.args.get('username', None)
+    finalunm = unm.split('_')
+    return render_template('home_employee.html', username=finalunm[0])    
 
 #question
 @app.route('/question')

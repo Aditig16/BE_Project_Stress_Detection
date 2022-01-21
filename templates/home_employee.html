@@ -80,7 +80,7 @@
 <div class="header">
 <div class="inner-header">
  <div class="title">
-<span id="user_name">&nbsp;&nbsp;&nbsp;&nbsp;Welcome</span>
+<span id="user_name">&nbsp;&nbsp;&nbsp;&nbsp;Welcome {{ username }}</span>
 </div>
 <ul class="navigation">
     <a href="{{ url_for('question')}}"><li>Questionnaire</li></a>
@@ -91,10 +91,6 @@
 </ul>
 </div>
 </div>
-{% block content %}{% endblock %}
-<script>
-    document.getElementById("user_name").innerHTML+=" Rasika";
-</script>
 </div>
 </body>
 </html>
