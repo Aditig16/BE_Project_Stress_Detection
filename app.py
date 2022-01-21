@@ -31,7 +31,7 @@ db.create_all()
 
 #-----------------------------------------------------------------------------------------------------------------
 
-#create database for individual values
+#add individual values in db here
 
 
 @app.route('/')

@@ -1,4 +1,4 @@
-************  (A USELESS FILE)  ************
+______________________________IGNORE FILE______________________________________________
 
 #insert new user in DB
 #entry = User(emp_id=103, emp_name='Rasika Gawali', emp_mobile='9823566734', emp_addr='Pune', emp_dept='Management', username='Rasika_103', password = '%K$p121rsK')
@@ -9,6 +9,3 @@
 #stmt = delete(User).where(User.username == 'Snehal')
 #db.session.execute(stmt)
 #db.session.commit()
-
-Refer this for future deployment:
-http://www.gtlambert.com/blog/deploy-flask-app-to-heroku
