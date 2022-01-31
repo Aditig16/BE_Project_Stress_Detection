@@ -89,7 +89,7 @@ def logout():
         return redirect('/')
     except:
         error = "Some error occured in flask code"
-        return render_template('signup.html', error=error)
+        return render_template('login.html', error=error)
 
 #setting debug true makes server auto restart if any changes in code are detected
 if __name__ == '__main__':
