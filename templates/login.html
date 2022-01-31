@@ -10,6 +10,13 @@
 	</head>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script type="text/javascript">
+function preventBack() 
+{ 
+	window.history.forward(); 
+}
+setTimeout("preventBack()", 0);
+window.onunload = function () 
+{ null };
     $(document).ready(function(){
           $('.tab a').on('click', function (e) {
           e.preventDefault();
@@ -171,7 +178,7 @@ margin-left: auto;
           <h1>Stress Detection System</h1>
           <div class="input-field">
             <label for="usernameemp">Username</label>
-            <input id="uname" type="text" name="username" />
+            <input id="uname" autocomplete="off" type="text" name="username" />
             <label for="password">Password</label> 
             <input type="password" name="password" required/>
             <input type="submit" value="Login" class="button"/>

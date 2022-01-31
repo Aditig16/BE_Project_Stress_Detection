@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete
 from sqlalchemy.sql.expression import null
 from flask import Flask,request,render_template,session,redirect,url_for
-
 #-----------------------------------------------------------------------------------------------------------------
 
 app = Flask(__name__)
@@ -10,9 +9,7 @@ app.config['SECRET_KEY'] = 'Thisissupposedtobesecret!'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///DetectionDatabase.db'
 db = SQLAlchemy(app)
-
 #-----------------------------------------------------------------------------------------------------------------
-
 #create_database having table User with 3 columns
 class User(db.Model):
     emp_index = db.Column(db.Integer, primary_key=True)
@@ -49,6 +46,7 @@ def login():
         if user:
             passchk = User.query.filter_by(username=duname , password=dpass).first()
             if passchk:
+                session['user'] = duname
                 return redirect(url_for('home_employee', username=duname))
                 #return render_template('home_employee.html')
             else:
@@ -61,22 +59,20 @@ def login():
                     return render_template('login.html')
             else:
                 return render_template('login.html')
-        return render_template('login.html')
 
 @app.route('/home_employee')
 def home_employee():
-    unm = request.args.get('username', None)
-    finalunm = unm.split('_')
-    return render_template('home_employee.html', username=finalunm[0])    
+    if('user' in session):
+        unm = request.args.get('username', None)
+        finalunm = unm.split('_')
+        return render_template('home_employee.html', username=finalunm[0])   
+    else:
+        return render_template('login.html')
 
 #question
 @app.route('/question')
 def question():
     return render_template('questionnaire.html')
-
-@app.route('/out')
-def out():
-    return render_template('login.html')
 
 @app.route('/stress')
 def stress():
@@ -85,6 +81,15 @@ def stress():
 @app.route('/factor')
 def factor():
     return render_template('factor_analysis.html')
+
+@app.route('/logout')
+def logout():
+    try:
+        session.pop('user')         
+        return redirect('/')
+    except:
+        error = "Some error occured in flask code"
+        return render_template('signup.html', error=error)
 
 #setting debug true makes server auto restart if any changes in code are detected
 if __name__ == '__main__':

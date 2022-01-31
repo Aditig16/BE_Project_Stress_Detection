@@ -74,6 +74,15 @@
 }
     </style>
 	</head>
+    <script type="text/javascript">
+        function preventBack() 
+{ 
+	window.history.forward(); 
+}
+setTimeout("preventBack()", 0);
+window.onunload = function () 
+{ null };
+    </script>
     <body>
         <div class = "container">
 <!--p>This page is for employees to see!!</p-->
@@ -87,7 +96,7 @@
     <a href="{{ url_for('stress')}}"><li>Stress Analysis</li></a>
     <a href="{{ url_for('factor')}}"><li>Factor Analysis</li></a>
 
-    <a href="{{ url_for('out')}}"><li>Logout </li></a>
+    <a href="{{ url_for('logout')}}"><li>Logout </li></a>
 </ul>
 </div>
 </div>
