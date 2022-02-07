@@ -12,64 +12,28 @@
     }
     </style>
 <body style="color:#fff;">
-    {% extends "home_employee.html" %}
-    {% block content %}
-    <div style="width:600px; height:500px">       
-         <canvas id="myChart" style="border: solid;position: absolute; left: 600px; top: 100px; border-color: black;"></canvas>
-         <div style="width:30px; height:100px">
-         <canvas id="info1" style="border: solid;position: absolute; left: 200px;top: 200px;
-         background-color: #221f1a; "></canvas>
-</div>
-<div style="width:30px; height:100px">
-    <canvas id="info2" style="border: solid;position: absolute;left: 200px;top: 400px;
-    background-color: #221f1a; ">
-</canvas>
-</div>
-        </div>
-        <div style="width:200px; height:60px;border: solid; position: absolute; padding-bottom:8px;left: 800px;top: 630px;display: inline;border-radius: 10px; ">
+    
+    {% include "./home_employee.html" %}
+    <div style="width:500px; height:400px">       
+         <canvas id="myChart" style="border: solid;position: absolute; left: 250px; top: 100px; border-color: black;"></canvas>
+    </div>
+    <label id="label_category1" style="border: solid;position: absolute; left: 30px; top: 130px; border-color: #fff; 
+         border-radius: 8px; padding:15px;color:#fff; background-color: #221f1a;">Category 1<br>Y-axis - Eye Blink Rate</label>
+    <label id="label_category2" style="border: solid;position: absolute; left: 30px; top: 230px; border-color: #fff; 
+    border-radius: 8px; padding:15px;color:#fff; background-color: #221f1a;">Category 2<br>Y-axis - Eye Blink Rate</label>
+        <div style="width:200px; height:60px;border: solid; position: absolute; padding-bottom:8px;left: 430px;top: 530px;display: inline;border-radius: 10px; ">
             <p id="score" style="text-align:center;"><br>Total Score:</p>
             <p id="id" style="text-align:center;"></p>
 </div>
-<script>
-    var canvas2 = document.getElementById('info1');
-    var context2 = canvas2.getContext('2d');
+<!----------------------------------------EYE BLINK RATE------------------------------------------------------------>
+ <div style="width:500px; height:400px">       
+         <canvas id="myChart_eye" style="border: solid;position: absolute; left: 1020px; top: 100px; border-color: black;"></canvas>
+         <label id="label_x_y" style="border: solid;position: absolute; left: 800px; top: 130px; border-color: #fff; 
+         border-radius: 8px; padding:15px;color:#fff; background-color: #221f1a;">X-axis - Miniutes<br>Y-axis - Eye Blink Rate</label>
+</div>
+<!----------------------------------------END------------------------------------------------------------------------>
+<script>    
 
-    context2.font = "15px Arial";
-    var canvas3 = document.getElementById('info2');
-    var context3 = canvas3.getContext('2d');
-    context3.font = "15px Arial";
-
-    
-        context2.beginPath();
-        context2.arc(40,20,5,0,2*Math.PI);
-        context2.fillStyle="rgb(255, 99, 132)";
-        context2.strokeStyle='black';     
-        context2.fill();
-        context2.stroke();
-        context2.beginPath();
-        context2.fillStyle = 'white';
-        context2.fillText("Category 1", 50, 26,1000);
-        context2.fillText("0 - Never", 40, 55,1000);
-        context2.fillText("1 - Almost Never", 40, 75,1000);
-        context2.fillText("2 - Sometimes", 40, 95,1000);
-        context2.fillText("3 - Fairly Often", 40, 115,1000);
-        context2.fillText("4 - Very Often", 40, 135, 1000);
-
-        context3.beginPath();
-        context3.arc(40,20,5,0,2*Math.PI);
-        context3.fillStyle="rgb(75, 192, 132)";
-        context3.strokeStyle='black';     
-        context3.fill();
-        context3.stroke();
-        context3.beginPath();
-        context3.fillStyle = 'white';
-        context3.fillText("Category 2", 50, 26,1000);
-        context3.fillText("4 - Never", 40, 55,1000);
-        context3.fillText("3 - Almost Never", 40, 75,1000);
-        context3.fillText("2 - Sometimes", 40, 95,1000);
-        context3.fillText("1 - Fairly Often", 40, 115,1000);
-        context3.fillText("0 - Very Often", 40, 135, 1000);
-        
         window["score_array"]=eval("("+localStorage.getItem("score_array")+")");
         score_val=localStorage.getItem("score_val");
         document.getElementById("score").innerHTML+=score_val;
@@ -134,20 +98,20 @@ document.getElementById("id").style.color="red";
 const labels = [
   1,2,3,4,5,6,7,8,9,10
 ];
-const data = {
+var data = {
   labels: labels,
   datasets: [{
     label: 'Questionnaire',
     pointRadius:5,
-    data:[new_arr[0],new_arr[1],new_arr[2],new_arr[3],new_arr[4],new_arr[5],new_arr[6],new_arr[7],new_arr[8],new_arr[9]],
+    data:new_arr,
     
-    backgroundColor:[ 'rgb(255, 99, 132)','rgb(255, 99, 132)','rgb(255, 99, 132)','rgb(75, 192, 132)','rgb(75, 192, 132)','rgb(255, 99, 132)','rgb(75, 192, 132)','rgb(75, 192, 132)','rgb(255, 99, 132)','rgb(255, 99, 132)'],
+    backgroundColor:[ 'rgb(255, 99, 132)','rgb(255, 99, 132)','rgb(255, 99, 132)','cyan','cyan','rgb(255, 99, 132)','cyan','cyan','rgb(255, 99, 132)','rgb(255, 99, 132)'],
     borderColor: 'black',
 },
 
 ]
 };
-const config = {
+var config = {
   type: 'line',
   data,
   options: {
@@ -194,8 +158,79 @@ var myChart = new Chart(
     document.getElementById('myChart'),
     config
   );
+var eye_blink_counts = {{ eye_blink_arr }};
+    var count = eye_blink_counts.length; 
+    var requiredLabels = [];
+    var k = 1;
+    background_color_arr = []
+    for (let i = 0; i < count; i++) {
+  requiredLabels[i] = k;
+  background_color_arr.push("cyan")
+
+    k = k+1;
+}
+//alert(requiredLabels);
+data = {
+  labels: requiredLabels,
+  datasets: [{
+    label: '',
+    pointRadius:5,
+    data:eye_blink_counts,
+    
+    backgroundColor:background_color_arr,
+    borderColor: 'black',
+},
+
+]
+};
+config = {
+  type: 'line',
+  data,
+  options: {
+      responsive:true,
+      maintainAspectRatio:false,
+      
+      scales: { 
+          yAxes:
+           { 
+               title:{ 
+                   display: true,
+                    text: "EYE BLINKS",
+                     font: {
+                          size: 10 
+                    } 
+                }, ticks: { 
+                    precision: 0 
+                } 
+            }, 
+            xAxes: { 
+                title: { 
+                    display: true, 
+                    text: "MINIUTES",
+                     font: { 
+                         size: 10
+                         } 
+                        } 
+                    } 
+                }, 
+                plugins: { 
+                    legend: {
+                     display: false,
+                     },
+                     tooltip:{
+                        mode:'nearest',
+                        intersect:false
+                     }
+                     
+                     }
+                    
+  }
+};
+var myChart2 = new Chart(
+    document.getElementById('myChart_eye'),
+    config
+  );
 
 </script>
-    {% endblock %}
     </body>
     </html>

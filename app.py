@@ -2,6 +2,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete
 from sqlalchemy.sql.expression import null
 from flask import Flask,request,render_template,session,redirect,url_for
+from threading import Thread
+from detect_blinks import return_array_eye_blinks, start_eye_blink_count
+import json
 #-----------------------------------------------------------------------------------------------------------------
 
 app = Flask(__name__)
@@ -46,9 +49,11 @@ def login():
         if user:
             passchk = User.query.filter_by(username=duname , password=dpass).first()
             if passchk:
-                session['user'] = duname
-                return redirect(url_for('home_employee', username=duname))
-                #return render_template('home_employee.html')
+                session['username'] = duname
+                s = session['username']
+                thr = Thread(target=start_eye_blink_count, args=[])
+                thr.start()
+                return redirect(url_for('home_employee', username=s))
             else:
                 return render_template('login.html')
         else:
@@ -62,34 +67,49 @@ def login():
 
 @app.route('/home_employee')
 def home_employee():
-    if('user' in session):
-        unm = request.args.get('username', None)
-        finalunm = unm.split('_')
-        return render_template('home_employee.html', username=finalunm[0])   
+    if('username' in session):
+        unm = session['username']
+        finalunm = unm.split('_') 
+        return render_template('home_employee.html', username=finalunm[0])  
     else:
         return render_template('login.html')
 
 #question
 @app.route('/question')
 def question():
-    return render_template('questionnaire.html')
+    if('username' in session):
+        unm = session['username']
+        finalunm = unm.split('_') 
+        return render_template('questionnaire.html',username=finalunm[0])
+    else:
+        return render_template('login.html')
 
 @app.route('/stress')
 def stress():
-    return render_template('home_employee.html')
+    if('username' in session):
+        unm = session['username']
+        finalunm = unm.split('_') 
+        return render_template('home_employee.html',username=finalunm[0])
+    else:
+        return render_template('login.html')
 
 @app.route('/factor')
 def factor():
-    return render_template('factor_analysis.html')
+    if('username' in session):
+        unm = session['username']
+        finalunm = unm.split('_') 
+        arr = return_array_eye_blinks()
+        return render_template('factor_analysis.html',username=finalunm[0],eye_blink_arr=json.dumps(arr))
+    else:
+        return render_template('login.html')
 
 @app.route('/logout')
 def logout():
     try:
-        session.pop('user')         
+        session.pop('username')         
         return redirect('/')
     except:
-        error = "Some error occured in flask code"
-        return render_template('login.html', error=error)
+        return render_template('login.html')
 
 #setting debug true makes server auto restart if any changes in code are detected
 if __name__ == '__main__':

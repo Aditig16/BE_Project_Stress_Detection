@@ -1,4 +1,3 @@
-<include file="include_home_employee.html"></include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +32,7 @@
 </style>
 </head>
 <body>
-    {% extends "home_employee.html" %}
-    {% block content %}
+    {% include "./home_employee.html" %}
     <br>
     <button class="button" id="start" style="position:absolute; left: 650px; top:300px;" onclick="start();">START QUESTIONNAIRE</button>
     <div class="quest_box" id = "quest_box" style="visibility: hidden;">
@@ -801,54 +799,6 @@ function next10(){
             document.getElementById("next10").style.display="none";
 
 }
-      //  var score=0;
-    //    var ques_count=0;
-
-
-/*if(ques_count==1){
-    document.getElementById("ques").innerHTML="Question 1."+ques_count+"In the last month, how often have you been upset because of something that happened unexpectedly?";
-}
-   if(ques_count==2){
-    document.getElementById("ques").innerHTML="Question 2. "+ques_count+"csf"+score+"In the last month, how often have you felt that you were unable to control the important things in your life?";
-   }
-   else if(ques_count==3){
-    document.getElementById("ques").innerHTML="Question 3. "+ques_count+"fa"+score+"In the last month, how often have you felt nervous and stressed?";
-    }
-    else if(ques_count==4){
-    document.getElementById("ques").innerHTML="Question 4. "+ques_count+"In the last month, how often have you felt confident about your ability to handle your personal problems?";
-    }
-    else if(ques_count==5){
-    document.getElementById("ques").innerHTML="Question 5. "+ques_count+"In the last month, how often have you felt that things were going your way?";
-    }
-    else if(ques_count==6){
-    document.getElementById("ques").innerHTML="Question 6. "+ques_count+"In the last month, how often have you found that you could not cope with all the things that you had to do?";
-    }
-    else if(ques_count==7){
-    document.getElementById("ques").innerHTML="Question 7. "+ques_count+"In the last month, how often have you been able to control irritations in your life?";
-    }
-    else if(ques_count==8){
-    document.getElementById("ques").innerHTML="Question 8. "+ques_count+"In the last month, how often have you felt that you were on top of things?";
-    }
-    else if(ques_count==9){
-    document.getElementById("ques").innerHTML="Question 9. "+ques_count+"In the last month, how often have you been angered because of things that happened that were outside of your control?";
-    }
-    else if(ques_count==10){
-    document.getElementById("ques").innerHTML="Question 10. "+ques_count+"In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?";
-    }
-        
-    <p id="q1" style="color: black; display: none;">
-        <p id="q2" style="color: black; display: none;">In the last month, how often have you felt that you were unable to control the important things in your life?</p>
-    <p id="q3" style="color: black; display: none;">In the last month, how often have you felt nervous and stressed?</p>
-    <p id="q4" style="color: black; display: none;">In the last month, how often have you felt confident about your ability to handle your personal problems?</p>
-    <p id="q5" style="color: black; display: none;">In the last month, how often have you felt that things were going your way?</p>
-    <p id="q6" style="color: black; display: none;">In the last month, how often have you found that you could not cope with all the things that you had to do?</p>
-    <p id="q7" style="color: black; display: none;">In the last month, how often have you been able to control irritations in your life?</p>
-    <p id="q8" style="color: black; display: none;">In the last month, how often have you felt that you were on top of things?</p>
-    <p id="q9" style="color: black; display: none;">In the last month, how often have you been angered because of things that happened that were outside of your control?</p>
-    <p id="q10" style="color: black; display: none;">In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?</p>
-
-        */
     </script>
-    {% endblock %}
 </body>
 </html>

@@ -73,9 +73,8 @@
 	font-family: 'open sans', sans-serif;
 }
     </style>
-	</head>
-    <script type="text/javascript">
-        function preventBack() 
+	</head><script>
+    function preventBack() 
 { 
 	window.history.forward(); 
 }
@@ -89,7 +88,7 @@ window.onunload = function ()
 <div class="header">
 <div class="inner-header">
  <div class="title">
-<span id="user_name">&nbsp;&nbsp;&nbsp;&nbsp;Welcome {{ username }}</span>
+<span id="user_name">&nbsp;&nbsp;&nbsp;&nbsp;Welcome {{username}}</span>
 </div>
 <ul class="navigation">
     <a href="{{ url_for('question')}}"><li>Questionnaire</li></a>
